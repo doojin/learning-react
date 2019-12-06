@@ -4,7 +4,8 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "postinstall": "lerna bootstrap"
+        "postinstall": "lerna bootstrap",
+        "launch": "lerna bootstrap && lerna run --scope client build && lerna run --scope server resources && lerna run --scope server start"
     },
     "repository": {
         "type": "git",

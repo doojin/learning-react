@@ -17,12 +17,16 @@
         "url": "git+https://doojin@github.com/doojin/learning-react.git"
     },
     "scripts": {
-        "test": "echo \"Error: run tests from root\" && exit 1"
+        "resources": "cpx --clean --verbose '../client/build/**/*' ./static/app",
+        "start": "node index.js"
     },
     "bugs": {
         "url": "https://github.com/doojin/learning-react/issues"
     },
     "dependencies": {
         "express": "^4.17.1"
+    },
+    "devDependencies": {
+        "cpx": "^1.5.0"
     }
 }
