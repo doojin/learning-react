@@ -1,0 +1,25 @@
+{
+    "name": "server",
+    "version": "0.0.0",
+    "description": "",
+    "author": "doojin <dmitry.papka@gmail.com>",
+    "homepage": "https://github.com/doojin/learning-react/tree/master/packages/server#readme",
+    "license": "ISC",
+    "main": "index.js",
+    "directories": {
+        "lib": "lib"
+    },
+    "files": [
+        "lib"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "git+https://doojin@github.com/doojin/learning-react.git"
+    },
+    "scripts": {
+        "test": "echo \"Error: run tests from root\" && exit 1"
+    },
+    "bugs": {
+        "url": "https://github.com/doojin/learning-react/issues"
+    }
+}
