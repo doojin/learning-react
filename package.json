@@ -4,7 +4,7 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "postinstall": "lerna bootstrap --no-ci"
     },
     "repository": {
         "type": "git",
@@ -15,5 +15,8 @@
     "bugs": {
         "url": "https://github.com/doojin/learning-react/issues"
     },
-    "homepage": "https://github.com/doojin/learning-react#readme"
+    "homepage": "https://github.com/doojin/learning-react#readme",
+    "devDependencies": {
+        "lerna": "^3.13.1"
+    }
 }
