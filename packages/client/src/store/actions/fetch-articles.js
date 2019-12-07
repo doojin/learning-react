@@ -1,7 +1,7 @@
 const axios = require('axios');
 
-export const FETCH_ARTICLES_SUCCESS = 'FETCH_ARTICLES_SUCCESS';
 export const FETCH_ARTICLES_STARTED = 'FETCH_ARTICLES_STARTED';
+export const FETCH_ARTICLES_SUCCESS = 'FETCH_ARTICLES_SUCCESS';
 export const FETCH_ARTICLES_FAILURE = 'FETCH_ARTICLES_FAILURE';
 
 function fetchArticlesStarted() {
