@@ -35,7 +35,7 @@ describe('fetch articles action', () => {
 
 			expect(dispatch).toHaveBeenCalledWith({
 				type: 'FETCH_ARTICLES_SUCCESS',
-				articles
+				payload: articles
 			});
 		});
 
@@ -52,7 +52,7 @@ describe('fetch articles action', () => {
 
 			expect(dispatch).toHaveBeenCalledWith({
 				type: 'FETCH_ARTICLES_FAILURE',
-				error: 'test error'
+				payload: 'test error'
 			});
 		});
 

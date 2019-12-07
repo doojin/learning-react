@@ -11,14 +11,14 @@ function fetchArticlesStarted() {
 function fetchArticlesSuccess(articles) {
 	return {
 		type: FETCH_ARTICLES_SUCCESS,
-		articles
+		payload: articles
 	};
 }
 
 function fetchArticlesFailure(error) {
 	return {
 		type: FETCH_ARTICLES_FAILURE,
-		error
+		payload: error
 	};
 }
 

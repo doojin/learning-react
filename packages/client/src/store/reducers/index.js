@@ -27,13 +27,13 @@ function reducer(state = initialState, action) {
 			return Object.assign({}, state, {
 				isLoading: false,
 				loadError: null,
-				articles: action.articles
+				articles: action.payload
 			});
 
 		case FETCH_ARTICLES_FAILURE:
 			return Object.assign({}, state, {
 				isLoading: false,
-				loadError: action.error
+				loadError: action.payload
 			});
 
 		default:
