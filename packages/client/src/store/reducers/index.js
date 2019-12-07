@@ -5,12 +5,7 @@ import {
 } from '../actions/fetch-articles';
 
 const initialState = {
-	articles: [
-		{
-			id: 0,
-			title: 'Default Article'
-		}
-	],
+	articles: [],
 	loadError: null,
 	isLoading: false
 };
