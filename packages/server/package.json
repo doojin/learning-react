@@ -18,6 +18,7 @@
     },
     "scripts": {
         "resources": "cpx --clean --verbose '../client/build/**/*' ./static/app",
+        "resources:dev": "cpx --watch --clean --verbose '../client/build/**/*' ./static/app",
         "start": "node index.js"
     },
     "bugs": {
