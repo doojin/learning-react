@@ -6,7 +6,6 @@ export const FETCH_ARTICLES_FAILURE = 'FETCH_ARTICLES_FAILURE';
 
 function fetchArticlesStarted() {
 	return { type: FETCH_ARTICLES_STARTED };
-
 }
 
 function fetchArticlesSuccess(articles) {
