@@ -7,7 +7,11 @@ const app = express();
 app.use(express.static('static/app'));
 
 app.get('/articles', (req, res) => {
-	res.json(articles);
+	const delaySeconds = 2;
+
+	setTimeout(() => {
+		res.json(articles);
+	}, delaySeconds * 1000);
 });
 
 app.get('/', (req, res) => {
