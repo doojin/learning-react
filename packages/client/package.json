@@ -8,7 +8,8 @@
     "@testing-library/user-event": "^7.1.2",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
-    "react-scripts": "3.3.0"
+    "react-scripts": "3.3.0",
+    "redux": "^4.0.4"
   },
   "scripts": {
     "watch": "npm-watch build",
@@ -35,6 +36,7 @@
     ]
   },
   "devDependencies": {
-    "npm-watch": "^0.6.0"
+    "npm-watch": "^0.6.0",
+    "react-redux": "^7.1.3"
   }
 }
