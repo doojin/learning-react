@@ -17,7 +17,8 @@
     "watch": "npm-watch build",
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "test": "jest"
   },
   "watch": {
     "build": "src"
