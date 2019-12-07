@@ -1,7 +1,10 @@
 import React from 'react';
+import ArticleList from './ArticleList';
 
 const App = () => (
-	<div>Hello, world!</div>
+	<div>
+		<ArticleList/>
+	</div>
 );
 
 export default App;
