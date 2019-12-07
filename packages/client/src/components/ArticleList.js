@@ -5,20 +5,22 @@ const mapStateToProps = state => ({
 	articles: state.articles
 });
 
-const ArticleList = props => (
+export const ArticleList = props => (
 	<ul>
 		{
 			props.articles.map(article => (
-				<li>
+				<li key={ article.id }>
 					<table border="1">
-						<tr>
-							<td>ID</td>
-							<td>{ article.id }</td>
-						</tr>
-						<tr>
-							<td>Title</td>
-							<td>{ article.title }</td>
-						</tr>
+						<tbody>
+							<tr>
+								<td>ID</td>
+								<td>{ article.id }</td>
+							</tr>
+							<tr>
+								<td>Title</td>
+								<td>{ article.title }</td>
+							</tr>
+						</tbody>
 					</table>
 				</li>
 			))
