@@ -1,10 +1,21 @@
 import React from 'react';
 import ArticleList from './ArticleList';
+import { fetchArticles } from '../store/actions/fetch-articles';
+import { connect } from 'react-redux'
 
-const App = () => (
-	<div>
-		<ArticleList/>
-	</div>
-);
+class App extends React.Component {
 
-export default App;
+	componentDidMount() {
+		this.props.fetchArticles();
+	}
+
+	render() {
+		return (
+			<div>
+				<ArticleList/>
+			</div>
+		);
+	}
+}
+
+export default connect(null, { fetchArticles })(App);
