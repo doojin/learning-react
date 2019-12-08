@@ -23,7 +23,7 @@ class Loading extends React.Component {
 
   render () {
     return (
-      <div>
+      <div className="alert alert-primary">
         {this.props.message}
         {'.'.repeat(this.state.dotsCount)}
       </div>
