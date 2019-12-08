@@ -4,9 +4,11 @@ import { connect } from 'react-redux'
 import { fetchArticles } from '../store/actions/fetch-articles'
 import ArticleList from './ArticleList'
 import Loading from './Loading'
+import Error from './Error'
 
 const mapStateToProps = state => ({
-  isLoading: state.isLoading
+  isLoading: state.isLoading,
+  loadError: state.loadError
 })
 
 export class App extends React.Component {
@@ -15,13 +17,18 @@ export class App extends React.Component {
   }
 
   render () {
+    const error = this.props.loadError
+      ? <Error message={ this.props.loadError.message } />
+      : null
+
     const body = this.props.isLoading
-      ? <Loading message="Your articles are loading"/>
+      ? <Loading message="Your articles are loading" />
       : <ArticleList/>
 
     return (
       <div>
-        {body}
+        { error }
+        { body }
       </div>
     )
   }
@@ -29,7 +36,8 @@ export class App extends React.Component {
 
 App.propTypes = {
   fetchArticles: PropTypes.func,
-  isLoading: PropTypes.bool
+  isLoading: PropTypes.bool,
+  loadError: PropTypes.string
 }
 
 export default connect(mapStateToProps, { fetchArticles })(App)
