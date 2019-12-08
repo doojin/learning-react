@@ -12,7 +12,7 @@ app.get('/articles', (req, res) => {
   setTimeout(() => {
     res.json(articles)
   }, delaySeconds * 1000)
-});
+})
 
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'static/app/index.html'))
