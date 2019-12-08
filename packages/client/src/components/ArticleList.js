@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import Article from './Article'
 
 const mapStateToProps = state => ({
   articles: state.articles
@@ -10,20 +11,10 @@ export const ArticleList = props => (
   <ul>
     {
       props.articles.map(article => (
-        <li key={article.id}>
-          <table border="1">
-            <tbody>
-              <tr>
-                <td>ID</td>
-                <td>{article.id}</td>
-              </tr>
-              <tr>
-                <td>Title</td>
-                <td>{article.title}</td>
-              </tr>
-            </tbody>
-          </table>
-        </li>
+        <Article
+          key={ article.id }
+          title={ article.title }
+          text={ article.text } />
       ))
     }
   </ul>

@@ -6,7 +6,8 @@
     "scripts": {
         "postinstall": "lerna bootstrap",
         "launch": "lerna bootstrap && lerna run --scope client build && lerna run --scope server resources && lerna run --scope server start",
-        "dev": "lerna run --scope client watch & lerna run --scope server resources:dev & lerna run --scope server start"
+        "dev": "lerna run --scope client watch & lerna run --scope server resources:dev & lerna run --scope server start",
+        "checks": "lerna run lint && lerna run test"
     },
     "repository": {
         "type": "git",

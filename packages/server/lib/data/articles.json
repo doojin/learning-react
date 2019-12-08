@@ -1,14 +1,17 @@
 [
     {
         "id": 1,
-        "title": "Test Article 1"
+        "title": "Test Article 1",
+        "text": "Test article text 1."
     },
     {
         "id": 2,
-        "title": "Test Article 2"
+        "title": "Test Article 2",
+        "text": "Test article text 2."
     },
     {
         "id": 3,
-        "title": "Test Article 3"
+        "title": "Test Article 3",
+        "text": "Test article text 3."
     }
 ]
