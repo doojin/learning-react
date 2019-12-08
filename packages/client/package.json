@@ -26,8 +26,8 @@
   "watch": {
     "build": {
       "patterns": [
-        "public",
-        "src"
+        "public/**/*",
+        "src/**/*"
       ],
       "extensions": "js,css,html"
     }
