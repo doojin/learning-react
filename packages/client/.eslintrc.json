@@ -1,0 +1,25 @@
+{
+    "extends": [
+        "standard",
+        "plugin:react/recommended"
+    ],
+    "globals": {
+        "jest": "readonly"
+    },
+    "plugins": [
+        "jest"
+    ],
+    "env": {
+        "jest/globals": true
+    },
+    "overrides": [
+        {
+            "files": [
+                "*.test.js"
+            ],
+            "rules": {
+                "import/first": "off"
+            }
+        }
+    ]
+}

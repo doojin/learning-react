@@ -1,83 +1,75 @@
-import reducer from '.';
+import reducer from '.'
 
 describe('reducer', () => {
+  let state
+  let action
 
-	let state;
-	let action;
+  beforeEach(() => {
+    state = {}
+    action = {}
+  })
 
-	beforeEach(() => {
-		state = {};
-		action = {};
-	});
+  describe('FETCH_ARTICLES_STARTED action', () => {
+    beforeEach(() => {
+      action.type = 'FETCH_ARTICLES_STARTED'
+    })
 
-	describe('FETCH_ARTICLES_STARTED action', () => {
+    test('sets isLoading property to true', () => {
+      const updatedState = reducer(state, action)
 
-		beforeEach(() => {
-			action.type = 'FETCH_ARTICLES_STARTED';
-		});
+      expect(updatedState.isLoading).toBe(true)
+    })
+  })
 
-		test('sets isLoading property to true', () => {
-			const updatedState = reducer(state, action);
+  describe('FETCH_ARTICLES_SUCCESS action', () => {
+    beforeEach(() => {
+      action.type = 'FETCH_ARTICLES_SUCCESS'
+      action.payload = [
+        { title: 'test article' }
+      ]
+    })
 
-			expect(updatedState.isLoading).toBe(true);
-		});
+    test('sets isLoading property to false', () => {
+      state.isLoading = true
 
-	});
+      const updatedState = reducer(state, action)
 
-	describe('FETCH_ARTICLES_SUCCESS action', () => {
+      expect(updatedState.isLoading).toBe(false)
+    })
 
-		beforeEach(() => {
-			action.type = 'FETCH_ARTICLES_SUCCESS';
-			action.payload = [
-				{ title: 'test article' }
-			];
-		});
+    test('sets error property to null', () => {
+      state.loadError = 'test error'
 
-		test('sets isLoading property to false', () => {
-			state.isLoading = true;
+      const updatedState = reducer(state, action)
 
-			const updatedState = reducer(state, action);
+      expect(updatedState.loadError).toBe(null)
+    })
 
-			expect(updatedState.isLoading).toBe(false);
-		});
+    test('sets articles property', () => {
+      const updatedState = reducer(state, action)
 
-		test('sets error property to null', () => {
-			state.loadError = 'test error';
+      expect(updatedState.articles).toEqual(action.payload)
+    })
+  })
 
-			const updatedState = reducer(state, action);
+  describe('FETCH_ARTICLES_FAILURE action', () => {
+    beforeEach(() => {
+      action.type = 'FETCH_ARTICLES_FAILURE'
+      action.payload = 'test error'
+    })
 
-			expect(updatedState.loadError).toBe(null);
-		});
+    test('sets isLoading property to false', () => {
+      state.isLoading = true
 
-		test('sets articles property', () => {
-			const updatedState = reducer(state, action);
+      const updatedState = reducer(state, action)
 
-			expect(updatedState.articles).toEqual(action.payload);
-		});
+      expect(updatedState.isLoading).toBe(false)
+    })
 
-	});
+    test('sets loadError property', () => {
+      const updatedState = reducer(state, action)
 
-	describe('FETCH_ARTICLES_FAILURE action', () => {
-
-		beforeEach(() => {
-			action.type = 'FETCH_ARTICLES_FAILURE';
-			action.payload = 'test error';
-		});
-
-		test('sets isLoading property to false', () => {
-			state.isLoading = true;
-
-			const updatedState = reducer(state, action);
-
-			expect(updatedState.isLoading).toBe(false);
-		});
-
-		test('sets loadError property', () => {
-			const updatedState = reducer(state, action);
-
-			expect(updatedState.loadError).toEqual('test error');
-		});
-
-	});
-
-});
+      expect(updatedState.loadError).toEqual('test error')
+    })
+  })
+})

@@ -1,61 +1,55 @@
-jest.mock('axios');
-import { fetchArticles } from './fetch-articles';
-import axios from 'axios';
+jest.mock('axios')
+import { fetchArticles } from './fetch-articles'
+import axios from 'axios'
 
 describe('fetch articles action', () => {
+  let dispatch
 
-	let dispatch;
+  beforeEach(() => {
+    dispatch = jest.fn()
+  })
 
-	beforeEach(() => {
-		dispatch = jest.fn();
-	});
+  test('dispatches FETCH_ARTICLES_STARTED event', async () => {
+    await fetchArticles()(dispatch)
 
-	test('dispatches FETCH_ARTICLES_STARTED event', async () => {
-		await fetchArticles()(dispatch);
+    expect(dispatch).toHaveBeenCalledWith({ type: 'FETCH_ARTICLES_STARTED' })
+  })
 
-		expect(dispatch).toHaveBeenCalledWith({ type: 'FETCH_ARTICLES_STARTED' });
-	});
+  describe('fetches articles successfully', () => {
+    let articles
 
-	describe('fetches articles successfully', () => {
+    beforeEach(() => {
+      articles = [
+        { title: 'test article' }
+      ]
 
-		let articles;
+      axios.get.mockReturnValue({
+        data: articles
+      })
+    })
 
-		beforeEach(() => {
-			articles = [
-				{ title: 'test article' }
-			];
+    test('dispatches FETCH_ARTICLES_SUCCESS event', async () => {
+      await fetchArticles()(dispatch)
 
-			axios.get.mockReturnValue({
-				data: articles
-			});
-		});
+      expect(dispatch).toHaveBeenCalledWith({
+        type: 'FETCH_ARTICLES_SUCCESS',
+        payload: articles
+      })
+    })
+  })
 
-		test('dispatches FETCH_ARTICLES_SUCCESS event', async () => {
-			await fetchArticles()(dispatch);
+  describe('articles fetch fails', () => {
+    beforeEach(() => {
+      axios.get.mockRejectedValue('test error')
+    })
 
-			expect(dispatch).toHaveBeenCalledWith({
-				type: 'FETCH_ARTICLES_SUCCESS',
-				payload: articles
-			});
-		});
+    test('dispatches FETCH_ARTICLES_FAILURE event', async () => {
+      await fetchArticles()(dispatch)
 
-	});
-
-	describe('articles fetch fails', () => {
-
-		beforeEach(() => {
-			axios.get.mockRejectedValue('test error');
-		});
-
-		test('dispatches FETCH_ARTICLES_FAILURE event', async () => {
-			await fetchArticles()(dispatch);
-
-			expect(dispatch).toHaveBeenCalledWith({
-				type: 'FETCH_ARTICLES_FAILURE',
-				payload: 'test error'
-			});
-		});
-
-	});
-
-});
+      expect(dispatch).toHaveBeenCalledWith({
+        type: 'FETCH_ARTICLES_FAILURE',
+        payload: 'test error'
+      })
+    })
+  })
+})
