@@ -24,7 +24,13 @@
     "lint": "eslint src --ext js"
   },
   "watch": {
-    "build": "src"
+    "build": {
+      "patterns": [
+        "public",
+        "src"
+      ],
+      "extensions": "js,css,html"
+    }
   },
   "eslintConfig": {
     "extends": "react-app"
