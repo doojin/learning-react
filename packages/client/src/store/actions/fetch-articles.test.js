@@ -25,7 +25,7 @@ describe('fetch articles action', () => {
 
       axios.get.mockReturnValue({
         data: articles
-      });
+      })
     })
 
     test('dispatches FETCH_ARTICLES_SUCCESS event', async () => {

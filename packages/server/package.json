@@ -20,7 +20,7 @@
         "resources": "cpx --clean --verbose '../client/build/**/*' ./static/app",
         "resources:dev": "cpx --watch --clean --verbose '../client/build/**/*' ./static/app",
         "start": "node index.js",
-        "lint": "eslint ./lib/**/*.js"
+        "lint": "eslint lib --ext js"
     },
     "bugs": {
         "url": "https://github.com/doojin/learning-react/issues"
