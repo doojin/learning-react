@@ -1,21 +1,30 @@
 import React from 'react';
-import ArticleList from './ArticleList';
-import { fetchArticles } from '../store/actions/fetch-articles';
 import { connect } from 'react-redux'
+import { fetchArticles } from '../store/actions/fetch-articles';
+import ArticleList from './ArticleList';
+import Loading from './Loading';
 
-class App extends React.Component {
+const mapStateToProps = state => ({
+	isLoading: state.isLoading
+});
+
+export class App extends React.Component {
 
 	componentDidMount() {
 		this.props.fetchArticles();
 	}
 
 	render() {
+		const body = this.props.isLoading ?
+			<Loading message="Your articles are loading" /> :
+			<ArticleList/>;
+
 		return (
 			<div>
-				<ArticleList/>
+				{ body }
 			</div>
 		);
 	}
 }
 
-export default connect(null, { fetchArticles })(App);
+export default connect(mapStateToProps, { fetchArticles })(App);
