@@ -26,7 +26,8 @@
         "url": "https://github.com/doojin/learning-react/issues"
     },
     "dependencies": {
-        "express": "^4.17.1"
+        "express": "^4.17.1",
+        "mongoose": "^5.8.0"
     },
     "devDependencies": {
         "cpx": "^1.5.0",
