@@ -1,18 +1,12 @@
 const path = require('path')
 const express = require('express')
-const articles = require('./data/articles')
+const loadArticles = require('./handlers/loadArticles')
 
 const app = express()
 
 app.use(express.static('static/app'))
 
-app.get('/articles', (req, res) => {
-  const delaySeconds = 3
-
-  setTimeout(() => {
-    res.json(articles)
-  }, delaySeconds * 1000)
-})
+app.get('/articles', (req, res) => loadArticles(req, res))
 
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'static/app/index.html'))
