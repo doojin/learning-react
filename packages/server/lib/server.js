@@ -1,12 +1,17 @@
 const path = require('path')
 const express = require('express')
+const bodyParser = require('body-parser')
 const loadArticles = require('./handlers/loadArticles')
+const createArticle = require('./handlers/createArticle')
 
 const app = express()
 
 app.use(express.static('static/app'))
+app.use(bodyParser.json())
 
-app.get('/articles', (req, res) => loadArticles(req, res))
+app.get('/articles', loadArticles)
+
+app.post('/articles', createArticle)
 
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'static/app/index.html'))
