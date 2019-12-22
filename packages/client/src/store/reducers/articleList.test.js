@@ -1,6 +1,6 @@
-import reducer from '.'
+import reducer from './articleList'
 
-describe('reducer', () => {
+describe('article list reducer', () => {
   let state
   let action
 
