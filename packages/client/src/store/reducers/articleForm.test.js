@@ -12,7 +12,7 @@ describe('article form reducer', () => {
     state = {}
   })
 
-  describe('article creation success event', () => {
+  describe('article creation success action', () => {
     beforeEach(() => {
       action = {
         type: ARTICLE_CREATION_SUCCESS
@@ -36,7 +36,7 @@ describe('article form reducer', () => {
     })
   })
 
-  describe('article creation failure event', () => {
+  describe('article creation failure action', () => {
     beforeEach(() => {
       action = {
         type: ARTICLE_CREATION_FAILURE
