@@ -1,21 +1,13 @@
-const path = require('path')
 const express = require('express')
 const bodyParser = require('body-parser')
-const loadArticles = require('./handlers/loadArticles')
-const createArticle = require('./handlers/createArticle')
+const handlers = require('./handlers')
 
 const app = express()
 
 app.use(express.static('static/app'))
 app.use(bodyParser.json())
 
-app.get('/articles', loadArticles)
-
-app.post('/articles', createArticle)
-
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'static/app/index.html'))
-})
+handlers.register(app)
 
 module.exports = {
   start (port) {
