@@ -7,19 +7,19 @@ import {
 } from '../actions/articleForm'
 
 const initialState = {
-  title: null,
-  text: null
+  title: '',
+  text: ''
 }
 
-const clearState = (state) => Object.assign({}, state, {
-  title: null,
-  text: null
+const clearState = state => Object.assign({}, state, {
+  title: '',
+  text: ''
 })
 
 export default (state = initialState, action) => {
   switch (action.type) {
     case ARTICLE_CREATION_STARTED:
-      return
+      return state
 
     case ARTICLE_CREATION_SUCCESS:
       return clearState(state)

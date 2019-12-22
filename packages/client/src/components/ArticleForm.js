@@ -3,7 +3,8 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import {
   updateTitle,
-  updateText
+  updateText,
+  createArticle
 } from '../store/actions/articleForm'
 
 const mapStateToProps = state => ({
@@ -12,14 +13,6 @@ const mapStateToProps = state => ({
 })
 
 export class ArticleForm extends React.Component {
-  handleTitleChange = event => {
-    this.props.updateTitle(event.target.value)
-  }
-
-  handleTextChange = event => {
-    this.props.updateText(event.target.value)
-  }
-
   render () {
     return (
       <form onSubmit={ this.onFormSubmit } className="mt-3 mb-5">
@@ -47,8 +40,21 @@ export class ArticleForm extends React.Component {
     )
   }
 
-  onFormSubmit (event) {
+  handleTitleChange = event => {
+    this.props.updateTitle(event.target.value)
+  }
+
+  handleTextChange = event => {
+    this.props.updateText(event.target.value)
+  }
+
+  onFormSubmit = event => {
     event.preventDefault()
+
+    this.props.createArticle({
+      title: this.props.title,
+      text: this.props.text
+    })
   }
 }
 
@@ -56,11 +62,13 @@ ArticleForm.propTypes = {
   title: PropTypes.string,
   text: PropTypes.string,
   updateTitle: PropTypes.func,
-  updateText: PropTypes.func
+  updateText: PropTypes.func,
+  createArticle: PropTypes.func
 }
 
 export default connect(
   mapStateToProps, {
     updateTitle,
-    updateText
+    updateText,
+    createArticle
   })(ArticleForm)

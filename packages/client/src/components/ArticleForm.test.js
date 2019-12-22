@@ -8,6 +8,8 @@ const getTitleInput = component =>
 const getTextTextarea = component =>
   component.find('.form-group').at(1).find('textarea')
 
+const getForm = component => component.find('form')
+
 describe('ArticleForm', () => {
   describe('render', () => {
     test('sets title input\'s value', () => {
@@ -60,6 +62,28 @@ describe('ArticleForm', () => {
       })
 
       expect(updateText).toHaveBeenCalledWith('test text')
+    })
+  })
+
+  describe('form submitted', () => {
+    let createArticle
+
+    beforeEach(() => {
+      createArticle = jest.fn()
+    })
+
+    test('invokes createArticle function', () => {
+      const component = shallow(<ArticleForm
+        title="test title"
+        text="test text"
+        createArticle={ createArticle } />)
+
+      getForm(component).simulate('submit', { preventDefault: jest.fn() })
+
+      expect(createArticle).toHaveBeenCalledWith({
+        title: 'test title',
+        text: 'test text'
+      })
     })
   })
 })
