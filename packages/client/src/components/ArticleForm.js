@@ -1,6 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
+import {
+  updateTitle,
+  updateText
+} from '../store/actions/articleForm'
 
 const mapStateToProps = state => ({
   title: state.articleForm.title,
@@ -8,12 +12,21 @@ const mapStateToProps = state => ({
 })
 
 export class ArticleForm extends React.Component {
+  handleTitleChange = event => {
+    this.props.updateTitle(event.target.value)
+  }
+
+  handleTextChange = event => {
+    this.props.updateText(event.target.value)
+  }
+
   render () {
     return (
       <form onSubmit={ this.onFormSubmit } className="mt-3 mb-5">
         <div className="form-group">
           <input
             value={ this.props.title }
+            onChange={ this.handleTitleChange }
             type="text"
             className="form-control"
             placeholder="Article Title" />
@@ -23,6 +36,7 @@ export class ArticleForm extends React.Component {
         <div className="form-group">
           <textarea
             value={ this.props.text }
+            onChange={ this.handleTextChange }
             className="form-control"
             placeholder="Article Text" />
           <small className="form-text text-muted">Write your article here</small>
@@ -40,7 +54,13 @@ export class ArticleForm extends React.Component {
 
 ArticleForm.propTypes = {
   title: PropTypes.string,
-  text: PropTypes.string
+  text: PropTypes.string,
+  updateTitle: PropTypes.func,
+  updateText: PropTypes.func
 }
 
-export default connect(mapStateToProps)(ArticleForm)
+export default connect(
+  mapStateToProps, {
+    updateTitle,
+    updateText
+  })(ArticleForm)
