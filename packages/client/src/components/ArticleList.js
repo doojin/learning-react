@@ -8,7 +8,7 @@ const mapStateToProps = state => ({
 })
 
 export const ArticleList = props => (
-  <ul>
+  <ul className="p-0">
     {
       props.articles.map(article => (
         <Article

@@ -5,6 +5,7 @@ import { fetchArticles } from '../store/actions/fetch-articles'
 import ArticleList from './ArticleList'
 import Loading from './Loading'
 import Error from './Error'
+import ArticleForm from './ArticleForm'
 
 const mapStateToProps = state => ({
   isLoading: state.isLoading,
@@ -23,7 +24,7 @@ export class App extends React.Component {
 
     const body = this.props.isLoading
       ? <Loading message="Your articles are loading" />
-      : <ArticleList/>
+      : <div><ArticleForm/><ArticleList/></div>
 
     return (
       <div>
