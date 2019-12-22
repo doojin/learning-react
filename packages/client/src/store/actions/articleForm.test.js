@@ -6,7 +6,7 @@ import {
   ARTICLE_CREATION_SUCCESS,
   ARTICLE_CREATION_FAILURE,
   createArticle
-} from './createArticle'
+} from './articleForm'
 
 describe('create article action', () => {
   let article

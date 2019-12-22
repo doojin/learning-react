@@ -2,7 +2,7 @@ import {
   ARTICLE_CREATION_STARTED,
   ARTICLE_CREATION_SUCCESS,
   ARTICLE_CREATION_FAILURE
-} from '../actions/createArticle'
+} from '../actions/articleForm'
 
 const initialState = {
   title: null,

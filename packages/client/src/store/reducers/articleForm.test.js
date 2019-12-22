@@ -1,7 +1,7 @@
 import {
   ARTICLE_CREATION_SUCCESS,
   ARTICLE_CREATION_FAILURE
-} from '../actions/createArticle'
+} from '../actions/articleForm'
 import articleForm from './articleForm'
 
 describe('article form reducer', () => {
