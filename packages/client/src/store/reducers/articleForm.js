@@ -1,7 +1,9 @@
 import {
   ARTICLE_CREATION_STARTED,
   ARTICLE_CREATION_SUCCESS,
-  ARTICLE_CREATION_FAILURE
+  ARTICLE_CREATION_FAILURE,
+  UPDATE_TITLE,
+  UPDATE_TEXT
 } from '../actions/articleForm'
 
 const initialState = {
@@ -24,6 +26,12 @@ export default (state = initialState, action) => {
 
     case ARTICLE_CREATION_FAILURE:
       return clearState(state)
+
+    case UPDATE_TITLE:
+      return Object.assign({}, state, { title: action.payload })
+
+    case UPDATE_TEXT:
+      return Object.assign({}, state, { text: action.payload })
 
     default:
       return state
