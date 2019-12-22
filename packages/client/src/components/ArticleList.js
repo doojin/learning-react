@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import Article from './Article'
 
 const mapStateToProps = state => ({
-  articles: state.articles
+  articles: state.articleList.articles
 })
 
 export const ArticleList = props => (

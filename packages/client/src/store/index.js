@@ -1,8 +1,14 @@
-import { createStore, applyMiddleware } from 'redux'
-import articleListReducer from './reducers/articleList'
+import { createStore, applyMiddleware, combineReducers } from 'redux'
 import thunk from 'redux-thunk'
+import articleListReducer from './reducers/articleList'
+import articleFormReducer from './reducers/articleForm'
+
+const reducer = combineReducers({
+  articleList: articleListReducer,
+  articleForm: articleFormReducer
+})
 
 export default createStore(
-  articleListReducer,
+  reducer,
   applyMiddleware(thunk)
 )
