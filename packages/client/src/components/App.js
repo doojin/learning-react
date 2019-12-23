@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { fetchArticles } from '../store/actions/fetch-articles'
+import { fetchArticles } from '../store/actions/fetchArticles'
 import ArticleList from './ArticleList'
 import Loading from './Loading'
 import Error from './Error'

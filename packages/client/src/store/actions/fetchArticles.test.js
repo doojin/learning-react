@@ -1,5 +1,5 @@
 jest.mock('axios')
-import { fetchArticles } from './fetch-articles'
+import { fetchArticles } from './fetchArticles'
 import axios from 'axios'
 
 describe('fetch articles action', () => {

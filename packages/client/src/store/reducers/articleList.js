@@ -2,7 +2,7 @@ import {
   FETCH_ARTICLES_STARTED,
   FETCH_ARTICLES_SUCCESS,
   FETCH_ARTICLES_FAILURE
-} from '../actions/fetch-articles'
+} from '../actions/fetchArticles'
 
 const initialState = {
   articles: [],
