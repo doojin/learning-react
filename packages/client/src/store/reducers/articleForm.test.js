@@ -26,7 +26,7 @@ describe('article form reducer', () => {
 
       const updated = articleForm(state, action)
 
-      expect(updated.title).toBeNull()
+      expect(updated.title).toEqual('')
     })
 
     test('clears text property', () => {
@@ -34,7 +34,7 @@ describe('article form reducer', () => {
 
       const updated = articleForm(state, action)
 
-      expect(updated.text).toBeNull()
+      expect(updated.text).toEqual('')
     })
   })
 
@@ -50,7 +50,7 @@ describe('article form reducer', () => {
 
       const updated = articleForm(state, action)
 
-      expect(updated.title).toBeNull()
+      expect(updated.title).toEqual('')
     })
 
     test('clears text property', () => {
@@ -58,7 +58,7 @@ describe('article form reducer', () => {
 
       const updated = articleForm(state, action)
 
-      expect(updated.text).toBeNull()
+      expect(updated.text).toEqual('')
     })
   })
 
