@@ -1,5 +1,7 @@
 import React from 'react'
-import { shallow } from 'enzyme'
+import { shallow, mount } from 'enzyme'
+import { Router } from 'react-router-dom'
+import { createMemoryHistory } from 'history'
 import { ArticleList } from './ArticleList'
 
 describe('ArticleList', () => {
@@ -31,6 +33,23 @@ describe('ArticleList', () => {
       expect(articleElements.at(1).key()).toEqual('2')
       expect(articleElements.at(1).prop('title')).toEqual('test title 2')
       expect(articleElements.at(1).prop('text')).toEqual('test text 2')
+    })
+  })
+
+  describe('new article creation button is clicked', () => {
+    test('redirects to the article creation form', () => {
+      const history = createMemoryHistory()
+
+      const component = mount(
+        <Router history={ history }>
+          <ArticleList articles={[]} />
+        </Router>
+      )
+
+      const newArticleButton = component.find('a[href="/create"]').first()
+
+      newArticleButton.simulate('click', { button: 0 })
+      expect(history.location.pathname).toBe('/create')
     })
   })
 })
