@@ -7,4 +7,4 @@ mongoose.connect('mongodb://localhost/reactArticles', {
   useUnifiedTopology: true
 })
 
-server.start(3000)
+server.start(80)
