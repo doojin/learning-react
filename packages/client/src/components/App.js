@@ -6,10 +6,12 @@ import history from '../router/history'
 import { fetchArticles } from '../store/actions/fetchArticles'
 import ArticleList from './ArticleList'
 import ArticleForm from './ArticleForm'
+import Loading from './Loading'
+import Error from './Error'
 
 const mapStateToProps = state => ({
-  isLoading: state.isLoading,
-  loadError: state.loadError
+  loadingMessage: state.notifications.loading.message,
+  errorMessage: state.notifications.error.message
 })
 
 export class App extends React.Component {
@@ -18,8 +20,13 @@ export class App extends React.Component {
   }
 
   render () {
+    const loadingMessage = this.props.loadingMessage && <Loading message={ this.props.loadingMessage } />
+    const errorMessage = this.props.errorMessage && <Error message={ this.props.errorMessage } />
+
     return (
       <Router history={ history }>
+        { errorMessage }
+        { loadingMessage }
         <Switch>
           <Route exact path="/" component={ ArticleList } />
           <Route exact path="/create" component={ ArticleForm } />
@@ -30,7 +37,9 @@ export class App extends React.Component {
 }
 
 App.propTypes = {
-  fetchArticles: PropTypes.func
+  fetchArticles: PropTypes.func,
+  loadingMessage: PropTypes.string,
+  errorMessage: PropTypes.string
 }
 
 export default connect(mapStateToProps, { fetchArticles })(App)
