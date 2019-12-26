@@ -6,6 +6,7 @@ import {
   updateText,
   createArticle
 } from '../store/actions/articleForm'
+import { Link } from 'react-router-dom'
 
 const mapStateToProps = state => ({
   title: state.articleForm.title,
@@ -35,6 +36,7 @@ export class ArticleForm extends React.Component {
           <small className="form-text text-muted">Write your article here</small>
         </div>
 
+        <Link to="/" className="btn btn-primary mr-3">Go Back</Link>
         <button type="submit" className="btn btn-primary">Create Article</button>
       </form>
     )

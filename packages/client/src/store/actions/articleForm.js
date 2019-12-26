@@ -1,4 +1,5 @@
 import axios from 'axios'
+import history from '../../router/history'
 
 export const ARTICLE_CREATION_STARTED = 'ARTICLE_CREATION_STARTED'
 
@@ -24,6 +25,7 @@ export function createArticle (article) {
 
     try {
       await axios.post('/articles', article)
+      history.push('/')
       dispatch(articleCreationSuccess())
     } catch (e) {
       dispatch(articleCreationFailure())
