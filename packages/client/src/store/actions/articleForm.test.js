@@ -1,4 +1,6 @@
 jest.mock('axios')
+jest.mock('../../router/history')
+jest.mock('./fetchArticles')
 
 import axios from 'axios'
 import {
