@@ -1,10 +1,8 @@
-jest.mock('../store/actions/fetchArticles')
-
 import React from 'react'
 import { shallow } from 'enzyme'
-import { App } from './App'
+import { Header } from './Header'
 
-describe('App', () => {
+describe('Header', () => {
   let fetchArticles
   let component
 
@@ -14,7 +12,7 @@ describe('App', () => {
 
   describe('loading message is not empty', () => {
     beforeEach(() => {
-      component = shallow(<App loadingMessage="test message" fetchArticles={ fetchArticles } />).dive()
+      component = shallow(<Header loadingMessage="test message" fetchArticles={ fetchArticles } />)
     })
 
     test('Loading message is shown', () => {
@@ -32,7 +30,7 @@ describe('App', () => {
 
   describe('loading message is empty', () => {
     beforeEach(() => {
-      component = shallow(<App fetchArticles={ fetchArticles } />).dive()
+      component = shallow(<Header fetchArticles={ fetchArticles } />)
     })
 
     test('Loading message is hidden', () => {
@@ -44,7 +42,7 @@ describe('App', () => {
 
   describe('error message is not empty', () => {
     beforeEach(() => {
-      component = shallow(<App errorMessage="test error" fetchArticles={ fetchArticles } />).dive()
+      component = shallow(<Header errorMessage="test error" fetchArticles={ fetchArticles } />)
     })
 
     test('Error message is shown', () => {
@@ -62,7 +60,7 @@ describe('App', () => {
 
   describe('error message is empty', () => {
     beforeEach(() => {
-      component = shallow(<App fetchArticles={ fetchArticles } />).dive()
+      component = shallow(<Header fetchArticles={ fetchArticles } />)
     })
 
     test('Error message is hidden', () => {
