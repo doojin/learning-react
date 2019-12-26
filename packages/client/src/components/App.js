@@ -30,9 +30,7 @@ export class App extends React.Component {
 }
 
 App.propTypes = {
-  fetchArticles: PropTypes.func,
-  isLoading: PropTypes.bool,
-  loadError: PropTypes.string
+  fetchArticles: PropTypes.func
 }
 
 export default connect(mapStateToProps, { fetchArticles })(App)
