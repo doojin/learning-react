@@ -1,5 +1,7 @@
 import React from 'react'
-import { shallow } from 'enzyme'
+import { shallow, mount } from 'enzyme'
+import { Router } from 'react-router-dom'
+import { createMemoryHistory } from 'history'
 import { ArticleForm } from './ArticleForm'
 
 const getTitleInput = component =>
@@ -84,6 +86,24 @@ describe('ArticleForm', () => {
         title: 'test title',
         text: 'test text'
       })
+    })
+  })
+
+  describe('Go back button clicked', () => {
+    test('redirects to the article list page', () => {
+      const history = createMemoryHistory()
+
+      history.push('/some/dummy/url')
+
+      const component = mount(
+        <Router history={ history }>
+          <ArticleForm />
+        </Router>
+      )
+
+      component.find('a[href="/"]').simulate('click', { button: 0 })
+
+      expect(history.location.pathname).toEqual('/')
     })
   })
 })
