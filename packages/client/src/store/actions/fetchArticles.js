@@ -1,4 +1,4 @@
-const axios = require('axios')
+import axios from 'axios'
 
 export const FETCH_ARTICLES_STARTED = 'FETCH_ARTICLES_STARTED'
 export const FETCH_ARTICLES_SUCCESS = 'FETCH_ARTICLES_SUCCESS'
