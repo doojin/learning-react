@@ -46,7 +46,7 @@ describe('ArticleList', () => {
         </Router>
       )
 
-      const newArticleButton = component.find('a[href="/create"]').first()
+      const newArticleButton = component.find('a[href="/create"]')
 
       newArticleButton.simulate('click', { button: 0 })
       expect(history.location.pathname).toBe('/create')
