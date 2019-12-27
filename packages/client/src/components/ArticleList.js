@@ -3,32 +3,44 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import Article from './Article'
+import ArticlePlaceholder from './ArticlePlaceholder'
+import Error from './Error'
 
 const mapStateToProps = state => ({
-  articles: state.articleList.articles
+  ...state.articleList
 })
 
-export const ArticleList = props => (
-  <div>
-    <Link to="/create" className="btn btn-primary mt-3 mb-4">
-      Create New Article
-    </Link>
+export const ArticleList = props => {
+  const placeholderComponent = props.isLoading && <ArticlePlaceholder />
+  const errorComponent = props.loadError && <Error message={ props.loadError } />
 
-    <ul className="p-0">
-      {
-        props.articles.map(article => (
-          <Article
-            key={ article.id }
-            title={ article.title }
-            text={ article.text } />
-        ))
-      }
-    </ul>
-  </div>
-)
+  return (
+    <div>
+      <Link to="/create" className="btn btn-primary mt-3 mb-4">
+        Create New Article
+      </Link>
+
+      { errorComponent }
+      { placeholderComponent }
+
+      <ul className="p-0">
+        {
+          props.articles.map(article => (
+            <Article
+              key={ article.id }
+              title={ article.title }
+              text={ article.text } />
+          ))
+        }
+      </ul>
+    </div>
+  )
+}
 
 ArticleList.propTypes = {
-  articles: PropTypes.array
+  articles: PropTypes.array,
+  isLoading: PropTypes.bool,
+  loadError: PropTypes.string
 }
 
 export default connect(mapStateToProps)(ArticleList)

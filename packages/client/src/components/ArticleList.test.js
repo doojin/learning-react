@@ -5,6 +5,8 @@ import { createMemoryHistory } from 'history'
 import { ArticleList } from './ArticleList'
 
 describe('ArticleList', () => {
+  let component
+
   describe('render', () => {
     test('creates list element for every article', () => {
       const articles = [
@@ -20,7 +22,7 @@ describe('ArticleList', () => {
         }
       ]
 
-      const component = shallow(<ArticleList articles={articles}/>)
+      component = shallow(<ArticleList articles={articles}/>)
 
       const articleElements = component.find('Article')
 
@@ -40,7 +42,7 @@ describe('ArticleList', () => {
     test('redirects to the article creation form', () => {
       const history = createMemoryHistory()
 
-      const component = mount(
+      component = mount(
         <Router history={ history }>
           <ArticleList articles={[]} />
         </Router>
@@ -50,6 +52,55 @@ describe('ArticleList', () => {
 
       newArticleButton.simulate('click', { button: 0 })
       expect(history.location.pathname).toBe('/create')
+    })
+  })
+
+  describe('articles are loading', () => {
+    beforeEach(() => {
+      component = shallow(<ArticleList articles={[]} isLoading={ true } />)
+    })
+
+    test('articles placeholder is shown', () => {
+      const placeholderComponent = component.find('ArticlePlaceholder')
+
+      expect(placeholderComponent.exists()).toBe(true)
+    })
+  })
+
+  describe('articles are not loading', () => {
+    beforeEach(() => {
+      component = shallow(<ArticleList articles={[]} />)
+    })
+
+    test('articles placeholder is hidden', () => {
+      const placeholderComponent = component.find('ArticlePlaceholder')
+
+      expect(placeholderComponent.exists()).toBe(false)
+    })
+  })
+
+  describe('error during articles load', () => {
+    beforeEach(() => {
+      component = shallow(<ArticleList articles={[]} loadError="test error" />)
+    })
+
+    test('error is shown', () => {
+      const errorComponent = component.find('Error')
+
+      expect(errorComponent.exists()).toBe(true)
+      expect(errorComponent.prop('message')).toEqual('test error')
+    })
+  })
+
+  describe('no error during articles load', () => {
+    beforeEach(() => {
+      component = shallow(<ArticleList articles={[]} />)
+    })
+
+    test('error is hidden', () => {
+      const errorComponent = component.find('Error')
+
+      expect(errorComponent.exists()).toBe(false)
     })
   })
 })
