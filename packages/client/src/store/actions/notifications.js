@@ -1,33 +1,12 @@
-export const SHOW_LOADING_MESSAGE = 'SHOW_LOADING_MESSAGE'
+export const CREATE_NOTIFICATION = 'CREATE_NOTIFICATION'
 
-export const showLoadingMessage = message => {
-  return dispatch => dispatch({
-    type: SHOW_LOADING_MESSAGE,
-    payload: message
-  })
-}
+export const createNotification = notification => ({
+  type: CREATE_NOTIFICATION,
+  payload: notification
+})
 
-export const HIDE_LOADING_MESSAGE = 'HIDE_LOADING_MESSAGE'
+export const REMOVE_NOTIFICATION = 'REMOVE_NOTIFICATION'
 
-export const hideLoadingMessage = () => {
-  return dispatch => dispatch({
-    type: HIDE_LOADING_MESSAGE
-  })
-}
-
-export const SHOW_ERROR_MESSAGE = 'SHOW_ERROR_MESSAGE'
-
-export const showErrorMessage = message => {
-  return dispatch => dispatch({
-    type: SHOW_ERROR_MESSAGE,
-    payload: message
-  })
-}
-
-export const HIDE_ERROR_MESSAGE = 'HIDE_ERROR_MESSAGE'
-
-export const hideErrorMessage = () => {
-  return dispatch => dispatch({
-    type: HIDE_ERROR_MESSAGE
-  })
-}
+export const removeNotification = () => ({
+  type: REMOVE_NOTIFICATION
+})

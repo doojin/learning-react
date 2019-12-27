@@ -1,61 +1,30 @@
 import {
-  SHOW_LOADING_MESSAGE,
-  HIDE_LOADING_MESSAGE,
-  SHOW_ERROR_MESSAGE,
-  HIDE_ERROR_MESSAGE,
+  CREATE_NOTIFICATION,
+  REMOVE_NOTIFICATION,
 
-  showLoadingMessage,
-  hideLoadingMessage,
-  showErrorMessage,
-  hideErrorMessage
+  createNotification,
+  removeNotification
 } from './notifications'
 
-describe('notification actions', () => {
-  let dispatch
+describe('CREATE_NOTIFICATION action creator', () => {
+  test('creates correct action object', () => {
+    const notification = {}
 
-  beforeEach(() => {
-    dispatch = jest.fn()
-  })
+    const action = createNotification(notification)
 
-  describe('showLoadingMessage', () => {
-    test('dispatches correct action object', () => {
-      showLoadingMessage('test message')(dispatch)
-
-      expect(dispatch).toHaveBeenCalledWith({
-        type: SHOW_LOADING_MESSAGE,
-        payload: 'test message'
-      })
+    expect(action).toEqual({
+      type: CREATE_NOTIFICATION,
+      payload: notification
     })
   })
+})
 
-  describe('hideLoadingMessage', () => {
-    test('dispatches correct action object', () => {
-      hideLoadingMessage()(dispatch)
+describe('REMOVE_NOTIFICATION action creator', () => {
+  test('creates correct action object', () => {
+    const action = removeNotification()
 
-      expect(dispatch).toHaveBeenCalledWith({
-        type: HIDE_LOADING_MESSAGE
-      })
-    })
-  })
-
-  describe('showErrorMessage', () => {
-    test('dispatches correct action object', () => {
-      showErrorMessage('test error')(dispatch)
-
-      expect(dispatch).toHaveBeenCalledWith({
-        type: SHOW_ERROR_MESSAGE,
-        payload: 'test error'
-      })
-    })
-  })
-
-  describe('hideErrorMessage', () => {
-    test('dispatches correct action object', () => {
-      hideErrorMessage()(dispatch)
-
-      expect(dispatch).toHaveBeenCalledWith({
-        type: HIDE_ERROR_MESSAGE
-      })
+    expect(action).toEqual({
+      type: REMOVE_NOTIFICATION
     })
   })
 })
