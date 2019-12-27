@@ -1,0 +1,48 @@
+.articlePlaceholder {
+  $block-color: #eee;
+  $border-color: $block-color - #111;
+  $loading-animation-color: $block-color - #050505;
+
+  border: solid 1px $border-color;
+  padding: 1.5rem;
+  width: 100%;
+
+  &__block {
+    background-color: $block-color;
+    overflow: hidden;
+
+    &:not(:first-child) {
+      margin-top: .75rem;
+    }
+
+    &--big {
+      height: 6rem;
+      width: 100%
+    }
+
+    &--medium {
+      height: 1.5rem;
+      width: 40%
+    }
+
+    &--small {
+      height: 1.5rem;
+      width: 25%;
+    }
+
+    &::after {
+      animation: 2s loading-animation ease-in-out infinite;
+      background-color: $loading-animation-color;
+      content: "";
+      display: block;
+      height: 100%;
+      transform: translateX(-100%);
+      width: 100%;
+    }
+    
+    @keyframes loading-animation {
+      0% { transform: translateX(-100%) }
+      100% { transform: translateX(100%) }
+    }
+  }
+}
