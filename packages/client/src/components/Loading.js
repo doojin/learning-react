@@ -12,13 +12,17 @@ class Loading extends React.Component {
     const maxDotsCount = this.props.maxDots || 3
     const dotsIncreaseInterval = 150
 
-    setInterval(() => {
+    this.interval = setInterval(() => {
       const dotsCount = this.state.dotsCount + 1
 
       this.setState(Object.assign({}, this.state, {
         dotsCount: dotsCount > maxDotsCount ? 0 : dotsCount
       }))
     }, dotsIncreaseInterval)
+  }
+
+  componentWillUnmount () {
+    clearInterval(this.interval)
   }
 
   render () {
