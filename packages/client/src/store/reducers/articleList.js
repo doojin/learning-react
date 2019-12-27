@@ -14,6 +14,7 @@ function reducer (state = initialState, action) {
   switch (action.type) {
     case FETCH_ARTICLES_STARTED:
       return Object.assign({}, state, {
+        articles: [],
         loadError: '',
         isLoading: true
       })
