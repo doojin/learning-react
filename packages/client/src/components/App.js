@@ -6,7 +6,6 @@ import history from '../router/history'
 import { fetchArticles } from '../store/actions/fetchArticles'
 import ArticleList from './ArticleList'
 import ArticleForm from './ArticleForm'
-import Header from './Header'
 
 export class App extends React.Component {
   componentDidMount () {
@@ -16,7 +15,6 @@ export class App extends React.Component {
   render () {
     return (
       <Router history={ history }>
-        <Header />
         <Switch>
           <Route exact path="/" component={ ArticleList } />
           <Route exact path="/create" component={ ArticleForm } />
