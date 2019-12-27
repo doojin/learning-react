@@ -6,7 +6,7 @@ import {
 
 const initialState = {
   articles: [],
-  loadError: null,
+  loadError: '',
   isLoading: false
 }
 
@@ -14,13 +14,14 @@ function reducer (state = initialState, action) {
   switch (action.type) {
     case FETCH_ARTICLES_STARTED:
       return Object.assign({}, state, {
+        loadError: '',
         isLoading: true
       })
 
     case FETCH_ARTICLES_SUCCESS:
       return Object.assign({}, state, {
         isLoading: false,
-        loadError: null,
+        loadError: '',
         articles: action.payload
       })
 

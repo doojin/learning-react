@@ -19,6 +19,14 @@ describe('article list reducer', () => {
 
       expect(updatedState.isLoading).toBe(true)
     })
+
+    test('cleans error property', () => {
+      state.loadError = 'test error'
+
+      const updatedState = reducer(state, action)
+
+      expect(updatedState.loadError).toEqual('')
+    })
   })
 
   describe('FETCH_ARTICLES_SUCCESS action', () => {
@@ -37,12 +45,12 @@ describe('article list reducer', () => {
       expect(updatedState.isLoading).toBe(false)
     })
 
-    test('sets error property to null', () => {
+    test('cleans error property', () => {
       state.loadError = 'test error'
 
       const updatedState = reducer(state, action)
 
-      expect(updatedState.loadError).toBe(null)
+      expect(updatedState.loadError).toEqual('')
     })
 
     test('sets articles property', () => {
