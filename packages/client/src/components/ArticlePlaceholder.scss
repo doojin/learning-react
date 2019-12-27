@@ -1,11 +1,15 @@
 .articlePlaceholder {
   $block-color: #eee;
-  $border-color: $block-color - #111;
+  $border-color: $block-color;
   $loading-animation-color: $block-color - #050505;
 
   border: solid 1px $border-color;
-  padding: 1.5rem;
+  padding: 1.25rem;
   width: 100%;
+
+  &:not(:first-child) {
+    margin-top: 1rem;
+  }
 
   &__block {
     background-color: $block-color;
@@ -16,7 +20,7 @@
     }
 
     &--big {
-      height: 6rem;
+      height: 4rem;
       width: 100%
     }
 

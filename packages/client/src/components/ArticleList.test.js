@@ -61,7 +61,7 @@ describe('ArticleList', () => {
     })
 
     test('articles placeholder is shown', () => {
-      const placeholderComponent = component.find('ArticlePlaceholder')
+      const placeholderComponent = component.find('ArticlesLoad')
 
       expect(placeholderComponent.exists()).toBe(true)
     })

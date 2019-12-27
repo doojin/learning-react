@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import Article from './Article'
-import ArticlePlaceholder from './ArticlePlaceholder'
+import ArticlesLoad from './ArticlesLoad'
 import Error from './Error'
 
 const mapStateToProps = state => ({
@@ -11,7 +11,7 @@ const mapStateToProps = state => ({
 })
 
 export const ArticleList = props => {
-  const placeholderComponent = props.isLoading && <ArticlePlaceholder />
+  const placeholderComponent = props.isLoading && <ArticlesLoad />
   const errorComponent = props.loadError && <Error message={ props.loadError } />
 
   return (
