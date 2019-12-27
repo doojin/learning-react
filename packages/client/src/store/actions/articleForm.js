@@ -1,4 +1,5 @@
 import axios from 'axios'
+import delay from 'delay'
 import history from '../../router/history'
 import { fetchArticles } from './fetchArticles'
 
@@ -26,6 +27,7 @@ export function createArticle (article) {
 
     try {
       await axios.post('/articles', article)
+      await delay(3000)
       dispatch(articleCreationSuccess())
       dispatch(fetchArticles())
       history.push('/')

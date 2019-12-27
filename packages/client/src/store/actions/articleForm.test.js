@@ -1,4 +1,5 @@
 jest.mock('axios')
+jest.mock('delay')
 jest.mock('../../router/history')
 jest.mock('./fetchArticles')
 
