@@ -1,4 +1,6 @@
 jest.mock('axios')
+jest.mock('delay')
+
 import { fetchArticles } from './fetchArticles'
 import axios from 'axios'
 
