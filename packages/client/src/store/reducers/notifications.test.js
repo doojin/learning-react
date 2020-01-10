@@ -1,76 +1,46 @@
 import notificationsReducer from './notifications'
 import {
-  SHOW_LOADING_MESSAGE,
-  HIDE_LOADING_MESSAGE,
-  SHOW_ERROR_MESSAGE,
-  HIDE_ERROR_MESSAGE
+  CREATE_NOTIFICATION,
+  REMOVE_NOTIFICATION
 } from '../actions/notifications'
 
-xdescribe('notifications reducer', () => {
+describe('notifications reducer', () => {
   let action
   let state
 
   beforeEach(() => {
     action = {}
     state = {
-      loading: {},
-      error: {}
+      notifications: []
     }
   })
 
-  describe('action type is SHOW_LOADING_MESSAGE', () => {
+  describe('action type is CREATE_NOTIFICATION', () => {
     beforeEach(() => {
-      action.type = SHOW_LOADING_MESSAGE
+      action.type = CREATE_NOTIFICATION
     })
 
-    test('sets loading message', () => {
-      action.payload = 'test message'
+    test('adds notification', () => {
+      action.payload = 'test notification'
 
       const updated = notificationsReducer(state, action)
 
-      expect(updated.loading.message).toEqual('test message')
+      expect(updated.notifications).toEqual(['test notification'])
     })
   })
 
-  describe('action type is HIDE_LOADING_MESSAGE', () => {
+  describe('action type is REMOVE_NOTIFICATION', () => {
     beforeEach(() => {
-      action.type = HIDE_LOADING_MESSAGE
+      action.type = REMOVE_NOTIFICATION
+      action.payload = 'test notification'
     })
 
-    test('removes loading message', () => {
-      state.loading.message = 'test message'
+    test('removes notification', () => {
+      state.notifications = ['test notification']
 
       const updated = notificationsReducer(state, action)
 
-      expect(updated.loading.message).toEqual('')
-    })
-  })
-
-  describe('action type is SHOW_ERROR_MESSAGE', () => {
-    beforeEach(() => {
-      action.type = SHOW_ERROR_MESSAGE
-    })
-
-    test('sets error message', () => {
-      action.payload = 'test error'
-
-      const updated = notificationsReducer(state, action)
-
-      expect(updated.error.message).toEqual('test error')
-    })
-  })
-
-  describe('action type is HIDE_ERROR_MESSAGE', () => {
-    beforeEach(() => {
-      action.type = HIDE_ERROR_MESSAGE
-    })
-
-    test('removes error message', () => {
-      state.error.message = 'test error'
-
-      const updated = notificationsReducer(state, action)
-
-      expect(updated.error.message).toEqual('')
+      expect(updated.notifications).toEqual([])
     })
   })
 })

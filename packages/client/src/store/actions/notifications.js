@@ -7,6 +7,7 @@ export const createNotification = notification => ({
 
 export const REMOVE_NOTIFICATION = 'REMOVE_NOTIFICATION'
 
-export const removeNotification = () => ({
-  type: REMOVE_NOTIFICATION
+export const removeNotification = notification => ({
+  type: REMOVE_NOTIFICATION,
+  payload: notification
 })
