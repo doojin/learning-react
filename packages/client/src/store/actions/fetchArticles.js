@@ -15,7 +15,7 @@ const fetchArticlesSuccess = articles => ({
 
 const fetchArticlesFailure = error => ({
   type: FETCH_ARTICLES_FAILURE,
-  payload: error
+  payload: error.message
 })
 
 export function fetchArticles () {
