@@ -6,7 +6,7 @@ import {
   HIDE_ERROR_MESSAGE
 } from '../actions/notifications'
 
-describe('notifications reducer', () => {
+xdescribe('notifications reducer', () => {
   let action
   let state
 

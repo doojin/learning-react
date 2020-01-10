@@ -42,7 +42,7 @@ describe('fetch articles action', () => {
 
   describe('articles fetch fails', () => {
     beforeEach(() => {
-      axios.get.mockRejectedValue('test error')
+      axios.get.mockRejectedValue(new Error('test error'))
     })
 
     test('dispatches FETCH_ARTICLES_FAILURE event', async () => {
