@@ -7,6 +7,7 @@ import { fetchArticles } from '../store/actions/fetchArticles'
 import { displayNotification } from '../store/actions/notifications'
 import ArticleList from './ArticleList'
 import ArticleForm from './ArticleForm'
+import Notification from './Notification'
 
 const mapStateToProps = state => ({
   notifications: state.notifications.notifications
@@ -17,14 +18,22 @@ export class App extends React.Component {
     this.props.fetchArticles()
     this.props.displayNotification({
       text: 'test message',
-      type: 'error'
-    }, 2500)
+      type: Notification.type.ERROR,
+      duration: 3500
+    })
   }
 
   render () {
     return (
       <div>
-        { this.props.notifications.map(notification => notification.text) }
+        {
+          this.props.notifications.map((notification, index) =>
+            <Notification
+              key={ index }
+              type={ notification.type }
+              text={ notification.text }
+              duration={ notification.duration } />)
+        }
         <Router history={ history }>
           <Switch>
             <Route exact path="/" component={ ArticleList } />

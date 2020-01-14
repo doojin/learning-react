@@ -28,21 +28,51 @@ describe('displayNotification', () => {
     })
   })
 
-  test('dispatches REMOVE_NOTIFICATION event after timeout', () => {
-    displayNotification(notification, 2000)(dispatch)
-
-    jest.advanceTimersByTime(1999)
-
-    expect(dispatch).not.toHaveBeenCalledWith({
-      type: REMOVE_NOTIFICATION,
-      payload: notification
+  describe('notification duration is set', () => {
+    beforeEach(() => {
+      notification = { duration: 2000 }
     })
 
-    jest.advanceTimersByTime(1)
+    test('dispatches REMOVE_NOTIFICATION event after duration passed', () => {
+      displayNotification(notification)(dispatch)
 
-    expect(dispatch).toHaveBeenCalledWith({
-      type: REMOVE_NOTIFICATION,
-      payload: notification
+      jest.advanceTimersByTime(1999)
+
+      expect(dispatch).not.toHaveBeenCalledWith({
+        type: REMOVE_NOTIFICATION,
+        payload: notification
+      })
+
+      jest.advanceTimersByTime(1)
+
+      expect(dispatch).toHaveBeenCalledWith({
+        type: REMOVE_NOTIFICATION,
+        payload: notification
+      })
+    })
+  })
+
+  describe('notification duration not set', () => {
+    beforeEach(() => {
+      notification = {}
+    })
+
+    test('dispatches REMOVE_NOTIFICATION event after the default duration passed', () => {
+      displayNotification(notification)(dispatch)
+
+      jest.advanceTimersByTime(2999)
+
+      expect(dispatch).not.toHaveBeenCalledWith({
+        type: REMOVE_NOTIFICATION,
+        payload: notification
+      })
+
+      jest.advanceTimersByTime(1)
+
+      expect(dispatch).toHaveBeenCalledWith({
+        type: REMOVE_NOTIFICATION,
+        payload: notification
+      })
     })
   })
 })

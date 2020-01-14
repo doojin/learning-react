@@ -1,9 +1,9 @@
 export const CREATE_NOTIFICATION = 'CREATE_NOTIFICATION'
 
-export const displayNotification = (notification, duration = 3000) => {
+export const displayNotification = notification => {
   return dispatch => {
     dispatch(createNotification(notification))
-    setTimeout(() => dispatch(removeNotification(notification)), duration)
+    setTimeout(() => dispatch(removeNotification(notification)), notification.duration || 3000)
   }
 }
 
