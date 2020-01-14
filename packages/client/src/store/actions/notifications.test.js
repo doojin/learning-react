@@ -1,30 +1,48 @@
 import {
   CREATE_NOTIFICATION,
   REMOVE_NOTIFICATION,
-
-  createNotification,
-  removeNotification
+  displayNotification
 } from './notifications'
 
-describe('CREATE_NOTIFICATION action creator', () => {
-  test('creates correct action object', () => {
-    const notification = {}
+jest.useFakeTimers()
 
-    const action = createNotification(notification)
+describe('displayNotification', () => {
+  let notification
+  let dispatch
 
-    expect(action).toEqual({
+  beforeEach(() => {
+    notification = {
+      text: 'test notification',
+      type: 'error'
+    }
+
+    dispatch = jest.fn()
+  })
+
+  test('dispatches CREATE_NOTIFICATION event', () => {
+    displayNotification(notification)(dispatch)
+
+    expect(dispatch).toHaveBeenCalledWith({
       type: CREATE_NOTIFICATION,
       payload: notification
     })
   })
-})
 
-describe('REMOVE_NOTIFICATION action creator', () => {
-  test('creates correct action object', () => {
-    const action = removeNotification()
+  test('dispatches REMOVE_NOTIFICATION event after timeout', () => {
+    displayNotification(notification, 2000)(dispatch)
 
-    expect(action).toEqual({
-      type: REMOVE_NOTIFICATION
+    jest.advanceTimersByTime(1999)
+
+    expect(dispatch).not.toHaveBeenCalledWith({
+      type: REMOVE_NOTIFICATION,
+      payload: notification
+    })
+
+    jest.advanceTimersByTime(1)
+
+    expect(dispatch).toHaveBeenCalledWith({
+      type: REMOVE_NOTIFICATION,
+      payload: notification
     })
   })
 })
