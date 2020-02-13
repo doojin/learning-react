@@ -16,8 +16,6 @@ const mapStateToProps = state => ({
 
 export class ArticleForm extends React.Component {
   render () {
-    const disabledValue = this.props.locked ? true : false
-
     return (
       <form onSubmit={ this.onFormSubmit } className="mt-3 mb-5">
         <div className="form-group">
@@ -27,7 +25,7 @@ export class ArticleForm extends React.Component {
             type="text"
             className="form-control"
             placeholder="Article Title"
-            disabled={ disabledValue } />
+            disabled={ this.props.locked } />
           <small className="form-text text-muted">Pick up an article headline</small>
         </div>
 
@@ -37,14 +35,14 @@ export class ArticleForm extends React.Component {
             onChange={ this.handleTextChange }
             className="form-control"
             placeholder="Article Text"
-            disabled={ disabledValue } />
+            disabled={ this.props.locked } />
           <small className="form-text text-muted">Write your article here</small>
         </div>
 
         <Link to="/" className="btn btn-primary mr-3">Go Back</Link>
         <button type="submit"
           className="btn btn-primary"
-          disabled={ disabledValue }>
+          disabled={ this.props.locked }>
           Create Article
         </button>
       </form>
