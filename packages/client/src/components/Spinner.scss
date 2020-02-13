@@ -1,0 +1,55 @@
+.spinner {
+  display: inline-block;
+
+  & > .spinner-circle {
+    display: inline-block;
+    height: 1rem;
+    position: relative;
+    width: 1rem;
+
+    &:before {
+      animation: spinner-animation .6s infinite linear;
+      background-color: #ccc;
+      border-radius: 50%;
+      content: "";
+      display: inline-block;
+      margin-left: 50%;
+      margin-top: 50%;
+      position: absolute;
+    }
+
+    &:nth-child(1):before {
+      animation-delay: initial;
+    }
+
+    &:nth-child(2):before {
+      animation-delay: .1s;
+    }
+
+    &:nth-child(3):before {
+      animation-delay: .3s;
+    }
+  }
+
+  @keyframes spinner-animation {
+    0% {
+      height: 25%;
+      left: -12.5%;
+      top: -12.5%;
+      width: 25%;
+    }
+    50% {
+      height: 100%;
+      left: -50%;
+      top: -50%;
+      width: 100%;
+    }
+    100% {
+      height: 25%;
+      left: -12.5%;
+      top: -12.5%;
+      width: 25%;
+    }
+  }
+}
+

@@ -7,6 +7,8 @@ import {
   createArticle
 } from '../store/actions/articleForm'
 import { Link } from 'react-router-dom'
+import Spinner from './Spinner'
+import './ArticleForm.scss'
 
 const mapStateToProps = state => ({
   title: state.articleForm.formData.title,
@@ -16,6 +18,16 @@ const mapStateToProps = state => ({
 
 export class ArticleForm extends React.Component {
   render () {
+    const loadingAnimation = () => {
+      if (this.props.locked) {
+        return (
+          <div className="article-form__loading-animation">
+            <Spinner />
+          </div>
+        )
+      }
+    }
+
     return (
       <form onSubmit={ this.onFormSubmit } className="mt-3 mb-5">
         <div className="form-group">
@@ -45,6 +57,7 @@ export class ArticleForm extends React.Component {
           disabled={ this.props.locked }>
           Create Article
         </button>
+        { loadingAnimation() }
       </form>
     )
   }

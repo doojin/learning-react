@@ -123,6 +123,10 @@ describe('ArticleForm', () => {
       expect(textArea.props().disabled).toEqual(true)
       expect(submitButtom.props().disabled).toEqual(true)
     })
+
+    test('spinner is not displayed', () => {
+      expect(component.find('Spinner').exists()).toBe(true)
+    })
   })
 
   describe('lock property is false', () => {
@@ -140,6 +144,10 @@ describe('ArticleForm', () => {
       expect(titleInput.props().disabled).toEqual(false)
       expect(textArea.props().disabled).toEqual(false)
       expect(submitButtom.props().disabled).toEqual(false)
+    })
+
+    test('spinner is displayed', () => {
+      expect(component.find('Spinner').exists()).toBe(false)
     })
   })
 })
