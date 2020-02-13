@@ -7,31 +7,52 @@ import {
 } from '../actions/articleForm'
 
 const initialState = {
-  title: '',
-  text: ''
+  formData: {
+    title: '',
+    text: ''
+  },
+  locked: false
 }
 
-const clearState = state => Object.assign({}, state, {
-  title: '',
-  text: ''
+const clearFormData = state => Object.assign({}, state, {
+  formData: {
+    title: '',
+    text: ''
+  }
 })
 
 export default (state = initialState, action) => {
   switch (action.type) {
     case ARTICLE_CREATION_STARTED:
-      return state
+      return Object.assign({}, state, {
+        locked: true
+      })
 
     case ARTICLE_CREATION_SUCCESS:
-      return clearState(state)
+      return Object.assign({}, clearFormData(state), {
+        locked: false
+      })
 
     case ARTICLE_CREATION_FAILURE:
-      return clearState(state)
+      return Object.assign({}, clearFormData(state), {
+        locked: false
+      })
 
     case UPDATE_TITLE:
-      return Object.assign({}, state, { title: action.payload })
+      return Object.assign({}, state, {
+        formData: {
+          ...state.formData,
+          title: action.payload
+        }
+      })
 
     case UPDATE_TEXT:
-      return Object.assign({}, state, { text: action.payload })
+      return Object.assign({}, state, {
+        formData: {
+          ...state.formData,
+          text: action.payload
+        }
+      })
 
     default:
       return state

@@ -2,7 +2,8 @@ import {
   ARTICLE_CREATION_SUCCESS,
   ARTICLE_CREATION_FAILURE,
   UPDATE_TITLE,
-  UPDATE_TEXT
+  UPDATE_TEXT,
+  ARTICLE_CREATION_STARTED
 } from '../actions/articleForm'
 import articleForm from './articleForm'
 
@@ -26,7 +27,7 @@ describe('article form reducer', () => {
 
       const updated = articleForm(state, action)
 
-      expect(updated.title).toEqual('')
+      expect(updated.formData.title).toEqual('')
     })
 
     test('clears text property', () => {
@@ -34,7 +35,15 @@ describe('article form reducer', () => {
 
       const updated = articleForm(state, action)
 
-      expect(updated.text).toEqual('')
+      expect(updated.formData.text).toEqual('')
+    })
+
+    test('unlocks the form', () => {
+      state.locked = true
+
+      const updated = articleForm(state, action)
+
+      expect(updated.locked).toBe(false)
     })
   })
 
@@ -50,7 +59,7 @@ describe('article form reducer', () => {
 
       const updated = articleForm(state, action)
 
-      expect(updated.title).toEqual('')
+      expect(updated.formData.title).toEqual('')
     })
 
     test('clears text property', () => {
@@ -58,7 +67,15 @@ describe('article form reducer', () => {
 
       const updated = articleForm(state, action)
 
-      expect(updated.text).toEqual('')
+      expect(updated.formData.text).toEqual('')
+    })
+
+    test('unlocks the form', () => {
+      state.locked = true
+
+      const updated = articleForm(state, action)
+
+      expect(updated.locked).toBe(false)
     })
   })
 
@@ -73,7 +90,11 @@ describe('article form reducer', () => {
     test('updates title property', () => {
       const updated = articleForm(state, action)
 
-      expect(updated).toEqual({ title: 'test title' })
+      expect(updated).toEqual({
+        formData: {
+          title: 'test title'
+        }
+      })
     })
   })
 
@@ -88,7 +109,27 @@ describe('article form reducer', () => {
     test('updates text property', () => {
       const updated = articleForm(state, action)
 
-      expect(updated).toEqual({ text: 'test text' })
+      expect(updated).toEqual({
+        formData: {
+          text: 'test text'
+        }
+      })
+    })
+  })
+
+  describe('article creation started action', () => {
+    beforeEach(() => {
+      action = {
+        type: ARTICLE_CREATION_STARTED
+      }
+    })
+
+    test('locks form', () => {
+      state.locked = false
+
+      const updated = articleForm(state, action)
+
+      expect(updated.locked).toBe(true)
     })
   })
 })

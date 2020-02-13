@@ -9,12 +9,15 @@ import {
 import { Link } from 'react-router-dom'
 
 const mapStateToProps = state => ({
-  title: state.articleForm.title,
-  text: state.articleForm.text
+  title: state.articleForm.formData.title,
+  text: state.articleForm.formData.text,
+  locked: state.articleForm.locked
 })
 
 export class ArticleForm extends React.Component {
   render () {
+    const disabledValue = this.props.locked ? true : false
+
     return (
       <form onSubmit={ this.onFormSubmit } className="mt-3 mb-5">
         <div className="form-group">
@@ -23,7 +26,8 @@ export class ArticleForm extends React.Component {
             onChange={ this.handleTitleChange }
             type="text"
             className="form-control"
-            placeholder="Article Title" />
+            placeholder="Article Title"
+            disabled={ disabledValue } />
           <small className="form-text text-muted">Pick up an article headline</small>
         </div>
 
@@ -32,12 +36,17 @@ export class ArticleForm extends React.Component {
             value={ this.props.text }
             onChange={ this.handleTextChange }
             className="form-control"
-            placeholder="Article Text" />
+            placeholder="Article Text"
+            disabled={ disabledValue } />
           <small className="form-text text-muted">Write your article here</small>
         </div>
 
         <Link to="/" className="btn btn-primary mr-3">Go Back</Link>
-        <button type="submit" className="btn btn-primary">Create Article</button>
+        <button type="submit"
+          className="btn btn-primary"
+          disabled={ disabledValue }>
+          Create Article
+        </button>
       </form>
     )
   }
@@ -63,6 +72,7 @@ export class ArticleForm extends React.Component {
 ArticleForm.propTypes = {
   title: PropTypes.string,
   text: PropTypes.string,
+  locked: PropTypes.bool,
   updateTitle: PropTypes.func,
   updateText: PropTypes.func,
   createArticle: PropTypes.func

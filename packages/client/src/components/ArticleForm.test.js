@@ -4,11 +4,11 @@ import { Router } from 'react-router-dom'
 import { createMemoryHistory } from 'history'
 import { ArticleForm } from './ArticleForm'
 
-const getTitleInput = component =>
-  component.find('.form-group').at(0).find('input')
+const getTitleInput = component => component.find('.form-group').at(0).find('input')
 
-const getTextTextarea = component =>
-  component.find('.form-group').at(1).find('textarea')
+const getTextTextarea = component => component.find('.form-group').at(1).find('textarea')
+
+const getSubmitButton = component => component.find('button[type="submit"]')
 
 const getForm = component => component.find('form')
 
@@ -104,6 +104,42 @@ describe('ArticleForm', () => {
       component.find('a[href="/"]').simulate('click', { button: 0 })
 
       expect(history.location.pathname).toEqual('/')
+    })
+  })
+
+  describe('lock property is true', () => {
+    let component
+
+    beforeEach(() => {
+      component = shallow(<ArticleForm locked={ true } />)
+    })
+
+    test('form fields are locked', () => {
+      const titleInput = getTitleInput(component)
+      const textArea = getTextTextarea(component)
+      const submitButtom = getSubmitButton(component)
+
+      expect(titleInput.props().disabled).toEqual(true)
+      expect(textArea.props().disabled).toEqual(true)
+      expect(submitButtom.props().disabled).toEqual(true)
+    })
+  })
+
+  describe('lock property is false', () => {
+    let component
+
+    beforeEach(() => {
+      component = shallow(<ArticleForm locked={ false } />)
+    })
+
+    test('form fields are unlocked', () => {
+      const titleInput = getTitleInput(component)
+      const textArea = getTextTextarea(component)
+      const submitButtom = getSubmitButton(component)
+
+      expect(titleInput.props().disabled).toEqual(false)
+      expect(textArea.props().disabled).toEqual(false)
+      expect(submitButtom.props().disabled).toEqual(false)
     })
   })
 })
