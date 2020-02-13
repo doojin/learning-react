@@ -2,6 +2,7 @@ jest.mock('axios')
 jest.mock('delay')
 jest.mock('../../router/history')
 jest.mock('./fetchArticles')
+jest.mock('./notifications')
 
 import axios from 'axios'
 import {
@@ -10,6 +11,7 @@ import {
   ARTICLE_CREATION_FAILURE,
   createArticle
 } from './articleForm'
+import { displayNotification } from './notifications'
 
 describe('create article action', () => {
   let article
@@ -44,11 +46,20 @@ describe('create article action', () => {
 
       expect(dispatch).not.toHaveBeenCalledWith({ type: ARTICLE_CREATION_FAILURE })
     })
+
+    test('shows success message', async () => {
+      await createArticle(article)(dispatch)
+
+      expect(displayNotification).toHaveBeenCalledWith({
+        type: 'success',
+        text: 'Your arcticle have been created'
+      })
+    })
   })
 
   describe('article creation fails', () => {
     beforeEach(() => {
-      axios.post.mockRejectedValue()
+      axios.post.mockRejectedValue(new Error('test error'))
     })
 
     test('dispatches article creation failure action', async () => {
@@ -61,6 +72,15 @@ describe('create article action', () => {
       await createArticle(article)(dispatch)
 
       expect(dispatch).not.toHaveBeenCalledWith({ type: ARTICLE_CREATION_SUCCESS })
+    })
+
+    test('shows error message', async () => {
+      await createArticle(article)(dispatch)
+
+      expect(displayNotification).toHaveBeenCalledWith({
+        type: 'danger',
+        text: 'test error'
+      })
     })
   })
 })

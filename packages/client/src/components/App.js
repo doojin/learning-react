@@ -16,11 +16,6 @@ const mapStateToProps = state => ({
 export class App extends React.Component {
   componentDidMount () {
     this.props.fetchArticles()
-    this.props.displayNotification({
-      text: 'test message',
-      type: Notification.type.ERROR,
-      duration: 3500
-    })
   }
 
   render () {

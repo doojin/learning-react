@@ -2,6 +2,8 @@ import axios from 'axios'
 import delay from 'delay'
 import history from '../../router/history'
 import { fetchArticles } from './fetchArticles'
+import { displayNotification } from './notifications'
+import Notification from '../../components/Notification'
 
 export const ARTICLE_CREATION_STARTED = 'ARTICLE_CREATION_STARTED'
 
@@ -21,6 +23,20 @@ const articleCreationFailure = () => {
   return { type: ARTICLE_CREATION_FAILURE }
 }
 
+const displayArticleCreationSuccessNotification = dispatch => {
+  dispatch(displayNotification({
+    type: Notification.type.SUCCESS,
+    text: 'Your arcticle have been created'
+  }))
+}
+
+const displayArticleCreationErrorNotification = (dispatch, error) => {
+  dispatch(displayNotification({
+    type: Notification.type.ERROR,
+    text: error
+  }))
+}
+
 export function createArticle (article) {
   return async dispatch => {
     dispatch(articleCreationStarted())
@@ -31,8 +47,10 @@ export function createArticle (article) {
       dispatch(articleCreationSuccess())
       dispatch(fetchArticles())
       history.push('/')
+      displayArticleCreationSuccessNotification(dispatch)
     } catch (e) {
       dispatch(articleCreationFailure())
+      displayArticleCreationErrorNotification(dispatch, e.message)
     }
   }
 }
